@@ -60,11 +60,7 @@ class VCG:
             bids.sort(key=lambda b: b[1], reverse=True)
 
 
-        #    John
-            print("k", k)
-            print("len", len(allocation))
-            # What if we only have 3 bids and 3 slots? Then the third bidder would pay just the reserve
-            print("bids",bids)
+ 
             if k == len(allocation) - 1:
                 # If len(slots) == len(bidders)
                 if k+1 > len(bids):
@@ -75,7 +71,7 @@ class VCG:
             else:
                 answer = (slot_clicks[k] - slot_clicks[k + 1]) * allocated_bids[k + 1][1] + total_payment(k + 1)
             
-            print("answer",answer)
+
             return answer
 
             # TODO: Compute the payment and return it.

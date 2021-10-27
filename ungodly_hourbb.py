@@ -62,7 +62,7 @@ class ungodly_hourbb:
         # # utility = clicks * (v_i - b^t)
 
         # John
-        print("t", t)
+
         utilities = []
         past_slot = self.slot_info(t, history, reserve)
         for slot in range(len(history.round(t-1).clicks)):
@@ -70,7 +70,7 @@ class ungodly_hourbb:
             t_j = past_slot[slot][1]
             pos_j = history.round(t-1).clicks[slot]
             utilities.append(pos_j * (self.value - t_j))
-        print("here",utilities) 
+
                 
         return utilities
 
@@ -124,7 +124,7 @@ class ungodly_hourbb:
         # If not going for the top:
         else:
             bid = self.value - (pos_j * (self.value - t_j))/pos_j_min_1
-        print("bid",bid)
+    
         return bid
 
   

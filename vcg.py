@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import random
-
+    
 from gsp import GSP
 
 class VCG:
@@ -9,6 +9,8 @@ class VCG:
     Implements the Vickrey-Clarke-Groves mechanism for ad auctions.
     """
     @staticmethod
+
+
     def compute(slot_clicks, reserve, bids):
         """
         Given info about the setting (clicks for each slot, and reserve price),
@@ -44,6 +46,9 @@ class VCG:
         (allocation, just_bids) = list(zip(*allocated_bids))
 
         # TODO: You just have to implement this function
+
+        # Total pay for each 
+
         def total_payment(k):
             """
             Total payment for a bidder in slot k.
@@ -51,16 +56,27 @@ class VCG:
             c = slot_clicks
             n = len(allocation)
 
-            print("allocation",allocation)
-            print("reserve",reserve)
-            print("sorted bids", bids.sort())
-            # if k == allocation:
-            #     if k+1 > len(allocation)
-            #     return slot_clicks[k] * max(reserve, )
+
+            bids.sort(key=lambda b: b[1], reverse=True)
+
+
+        #    John
+            print("k", k)
+            print("len", len(allocation))
+            # What if we only have 3 bids and 3 slots? Then the third bidder would pay just the reserve
+            print("bids",bids)
+            if k == len(allocation) - 1:
+                # If len(slots) == len(bidders)
+                if k+1 > len(bids):
+                    answer = slot_clicks[k] * reserve 
+                else:
+                    answer = slot_clicks[k] * max(reserve, bids[k + 1][1])
+                
+            else:
+                answer = (slot_clicks[k] - slot_clicks[k + 1]) * allocated_bids[k + 1][1] + total_payment(k + 1)
             
-
-
-            return 1
+            print("answer",answer)
+            return answer
 
             # TODO: Compute the payment and return it.
 

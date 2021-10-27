@@ -61,15 +61,13 @@ class ungodly_hourbb:
         # for t, find the jth highest bid for 
         # # utility = clicks * (v_i - b^t)
 
-
+        # John
         print("t", t)
         utilities = []
         past_slot = self.slot_info(t, history, reserve)
         for slot in range(len(history.round(t-1).clicks)):
-            t_j = 0
-            if slot != len(history.round(t-1).clicks) - 1:
-                # What the bidder played for the next round
-                t_j = past_slot[slot][1]
+        
+            t_j = past_slot[slot][1]
             pos_j = history.round(t-1).clicks[slot]
             utilities.append(pos_j * (self.value - t_j))
         print("here",utilities) 
@@ -101,7 +99,7 @@ class ungodly_hourbb:
 
 
         
-
+        # John 
         prev_round = history.round(t-1)
         amt_slots = len(prev_round.clicks)
         (slot, min_bid, max_bid) = self.target_slot(t, history, reserve)
@@ -112,23 +110,19 @@ class ungodly_hourbb:
         pos_j_min_1 = prev_round.clicks[slot - 1]
        
         past_slot = self.slot_info(t, history, reserve)
-        t_j = 0
-        if slot + 1 != amt_slots - 1:
-            # jth highest bid excluding the current player
-            t_j = past_slot[slot][1]
+        t_j = past_slot[slot][1]
 
         
         # Not expecting to win:
         if t_j >= self.value:
-            print("hey girl")
+            
             bid =  self.value
         # If going to the top
         elif slot == 0:
-            print("hey dude")
-            return self.value
+   
+            bid =  self.value
         # If not going for the top:
         else:
-            print("heyya")
             bid = self.value - (pos_j * (self.value - t_j))/pos_j_min_1
         print("bid",bid)
         return bid

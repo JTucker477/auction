@@ -5,7 +5,7 @@
 # called test_blah and runs them)
 
 from auction import History
-from bbagent import BBAgent
+from ungodly_hourbb import ungodly_hourbb
 
 
 def dual_assert(x,y):
@@ -38,9 +38,9 @@ def test_bb():
 
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
-    a1 = BBAgent(1, 8, budget)
-    a2 = BBAgent(2, 10, budget)
-    a3 = BBAgent(3, 20, budget)
+    a1 = ungodly_hourbb(1, 8, budget)
+    a2 = ungodly_hourbb(2, 10, budget)
+    a3 = ungodly_hourbb(3, 20, budget)
 
     # a1's utils for slots: [3 * (8-10), 2*(8-5), 0] = [-6, 6, 0]
     verb_assert(a1.expected_utils(t, history, reserve), [-6, 6, 0])
@@ -80,9 +80,9 @@ def test_bb_reserve():
 
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
-    a1 = BBAgent(1, 8, budget)
-    a2 = BBAgent(2, 10, budget)
-    a3 = BBAgent(3, 20, budget)
+    a1 = ungodly_hourbb(1, 8, budget)
+    a2 = ungodly_hourbb(2, 10, budget)
+    a3 = ungodly_hourbb(3, 20, budget)
 
     # Test both with reserve and without
     # a1's utils for slots: [3 * (8-10), 2*(8-7), 1*(8-5)] = [-6, 2, 3]
@@ -98,6 +98,7 @@ def test_bb_reserve():
     dual_assert(a2.bid(t, history, reserve),  10-8.0/3)
 
     # a3's utils for slots: [3 * (20 - 7), 2 * (20-6), 1*(20-5)] = [39, 28, 15]
+    
     assert a3.expected_utils(t, history, reserve) == [39, 28, 15]
     assert a3.target_slot(t, history, reserve) == (0, 7, 14)
     # bid for slot 0: 20 (your value)
@@ -124,9 +125,9 @@ def test_bb_overbid():
 
     history = History(bids, occupants, slot_clicks, per_click_payments, slot_payments)
 
-    a1 = BBAgent(1, 8, budget)
-    a2 = BBAgent(2, 15, budget)
-    a3 = BBAgent(3, 20, budget)
+    a1 = ungodly_hourbb(1, 8, budget)
+    a2 = ungodly_hourbb(2, 15, budget)
+    a3 = ungodly_hourbb(3, 20, budget)
 
     # a1's utils for slots: [3 * (8-16), 2*(8-14), 0] = [-24, -12, 0]
     assert a1.expected_utils(t, history, reserve) == [-24, -12, 0]

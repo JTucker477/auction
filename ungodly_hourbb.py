@@ -97,7 +97,7 @@ class ungodly_hourbb:
         # (p_x is the price/click in slot x)
         # If s*_j is the top slot, bid the value v_j
 
-
+        
         
         # John 
         prev_round = history.round(t-1)
@@ -124,8 +124,8 @@ class ungodly_hourbb:
         # If not going for the top:
         else:
             bid = self.value - (pos_j * (self.value - t_j))/pos_j_min_1
-    
-        return bid
+        # print("bid",bid, int(bid))
+        return round(bid)
 
   
 
